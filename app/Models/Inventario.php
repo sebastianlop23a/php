@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,18 +9,17 @@ class Inventario extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'cantidad', 'precio', 'descripcion', 'tipo'];
+    protected $table = 'inventarios';
 
-    /**
-     * Devuelve si el registro es un producto en inventario o un movimiento de stock.
-     */
-    public function esStock()
+    protected $fillable = ['producto_id', 'cantidad_disponible', 'stock_minimo', 'cantidad_reservada'];
+
+    public function producto()
     {
-        return $this->tipo === 'stock';
+        return $this->belongsTo(Producto::class);
     }
 
-    public function esInventario()
+    public function estaBajoMinimo()
     {
-        return $this->tipo === 'inventario';
+        return $this->cantidad_disponible <= $this->stock_minimo;
     }
 }

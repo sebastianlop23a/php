@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,6 +11,10 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('dashboard'); // Si ya está autenticado, redirigir al dashboard
+        }
+
         return view('auth.login');
     }
 
@@ -21,7 +26,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('stocks.index');
+            return redirect()->route('dashboard'); // Redirigir al dashboard después del login
         }
 
         return back()->with('error', 'Credenciales incorrectas.');
@@ -29,6 +34,10 @@ class AuthController extends Controller
 
     public function showRegisterForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('dashboard'); // Si ya está autenticado, redirigir al dashboard
+        }
+
         return view('auth.register');
     }
 
@@ -40,14 +49,16 @@ class AuthController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
 
-        Usuario::create([
+        $usuario = Usuario::create([
             'nombre' => $request->nombre,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'rol_id' => 2, // Asignar rol por defecto (puedes cambiar esto)
+            'rol_id' => 2, // Asignar rol por defecto
         ]);
 
-        return redirect()->route('login')->with('success', 'Registro exitoso. Inicia sesión.');
+        Auth::login($usuario); // Iniciar sesión automáticamente después del registro
+
+        return redirect()->route('dashboard')->with('success', 'Registro exitoso.');
     }
 
     public function logout()

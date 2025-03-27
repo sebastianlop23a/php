@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Stock extends Model
 {
     use HasFactory;
+    protected $fillable = ['producto_id', 'cantidad'];
 
-    protected $fillable = [
-        'tipo_producto', // Ahora el usuario ingresará el tipo de producto
-        'cantidad',
-    ];
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class);
+    }
 }

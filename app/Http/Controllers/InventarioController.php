@@ -1,62 +1,75 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\Inventario;
 use Illuminate\Http\Request;
+use App\Models\Inventario;
+use App\Models\Producto;
 
 class InventarioController extends Controller
 {
-    public function index(Request $request)
+    // 📌 Mostrar lista del inventario
+    public function index()
     {
-        $tipo = $request->input('tipo', 'inventario'); // Si no hay filtro, mostrar inventario
-        $inventarios = Inventario::where('tipo', $tipo)->get();
-
-        return view('inventarios.index', compact('inventarios', 'tipo'));
+        $inventarios = Inventario::with('producto')->get();
+        return view('inventario.index', compact('inventarios'));
     }
 
+    // 📌 Mostrar formulario para agregar un producto al inventario
     public function create()
     {
-        return view('inventarios.create');
+        $productos = Producto::all();
+        return view('inventario.create', compact('productos'));
     }
 
+    // 📌 Guardar un nuevo producto en el inventario
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'cantidad' => 'required|integer|min:0',
-            'precio' => 'required|numeric|min:0',
-            'descripcion' => 'nullable|string',
-            'tipo' => 'required|in:inventario,stock', // Validación para diferenciar stock/inventario
+            'producto_id' => 'required|exists:productos,id',
+            'cantidad_disponible' => 'required|integer|min:0',
+            'stock_minimo' => 'required|integer|min:0',
         ]);
 
-        Inventario::create($request->all());
+        Inventario::create([
+            'producto_id' => $request->producto_id,
+            'cantidad_disponible' => $request->cantidad_disponible,
+            'stock_minimo' => $request->stock_minimo,
+        ]);
 
-        return redirect()->route('inventarios.index')->with('success', 'Producto agregado al inventario.');
+        return redirect()->route('inventarios.index')->with('success', 'Producto agregado al inventario correctamente.');
     }
 
-    public function edit(Inventario $inventario)
+    // 📌 Editar un producto del inventario
+    public function edit($id)
     {
-        return view('inventarios.edit', compact('inventario'));
+        $inventario = Inventario::findOrFail($id);
+        $productos = Producto::all();
+        return view('inventario.edit', compact('inventario', 'productos'));
     }
 
-    public function update(Request $request, Inventario $inventario)
+    // 📌 Actualizar los datos de un producto en el inventario
+    public function update(Request $request, $id)
     {
+        $inventario = Inventario::findOrFail($id);
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'cantidad' => 'required|integer|min:0',
-            'precio' => 'required|numeric|min:0',
-            'descripcion' => 'nullable|string',
-            'tipo' => 'required|in:inventario,stock',
+            'cantidad_disponible' => 'required|integer|min:0',
+            'stock_minimo' => 'required|integer|min:0',
         ]);
 
         $inventario->update($request->all());
 
-        return redirect()->route('inventarios.index')->with('success', 'Producto actualizado.');
+        return redirect()->route('inventarios.index')->with('success', 'Inventario actualizado correctamente.');
     }
 
-    public function destroy(Inventario $inventario)
+    // 📌 Eliminar un producto del inventario
+    public function destroy($id)
     {
+        $inventario = Inventario::findOrFail($id);
         $inventario->delete();
-        return redirect()->route('inventarios.index')->with('success', 'Producto eliminado.');
+
+        return redirect()->route('inventarios.index')->with('success', 'Producto eliminado del inventario.');
     }
 }
+
+
