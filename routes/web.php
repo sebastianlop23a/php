@@ -9,6 +9,20 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\MovimientoStockController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\AuthController;
+
+Route::get('/login', [AuthController::class, 'loginView'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'registerView'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
 
 // Página de inicio (opcional)
 Route::get('/', function () {
@@ -38,3 +52,5 @@ Route::post('stocks/movimiento', [StockController::class, 'registrarMovimiento']
 
 // Rutas de Movimientos de clientes
 Route::resource('clientes', ClienteController::class);
+// Rutas de Inventario
+Route::resource('inventarios', InventarioController::class);

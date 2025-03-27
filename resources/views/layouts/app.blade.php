@@ -7,119 +7,108 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
     <style>
-/* ============================= */
-/* ESTILOS GENERALES */
-/* ============================= */
+        /* ============================= */
+        /* ESTILOS GENERALES */
+        /* ============================= */
 
-/* Fondo general con un tono oscuro y elegante */
-body {
-    background-color: #2B2B2B; /* Gris oscuro elegante */
-    font-family: 'Poppins', sans-serif; /* Fuente moderna y elegante */
-    color: #EAEAEA; /* Blanco suave para mejor contraste */
-}
+        body {
+            background-color: #2B2B2B; /* Gris oscuro elegante */
+            font-family: 'Poppins', sans-serif;
+            color: #EAEAEA;
+        }
 
-/* ============================= */
-/* BARRA DE NAVEGACIÓN */
-/* ============================= */
+        /* ============================= */
+        /* BARRA DE NAVEGACIÓN */
+        /* ============================= */
 
-/* Fondo de la barra de navegación */
-.navbar {
-    background-color: #1E3A5F !important; /* Azul Marino profundo */
-    padding: 12px 18px; /* Espaciado más cómodo */
-}
+        .navbar {
+            background-color: #1E3A5F !important;
+            padding: 12px 18px;
+        }
 
-/* Color del texto en la barra de navegación */
-.navbar-brand, .nav-link {
-    color: #EAEAEA !important; /* Blanco suave */
-    font-weight: 500; /* Negrita moderada */
-    transition: color 0.3s ease-in-out;
-}
+        .navbar-brand, .nav-link {
+            color: #EAEAEA !important;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
 
-/* Efecto hover en los enlaces */
-.nav-link:hover {
-    color: #C9A66B !important; /* Dorado suave */
-}
+        .nav-link:hover {
+            color: #C9A66B !important;
+        }
 
-/* ============================= */
-/* CONTENEDOR PRINCIPAL */
-/* ============================= */
+        /* ============================= */
+        /* CONTENEDOR PRINCIPAL */
+        /* ============================= */
 
-/* Fondo del contenedor principal */
-.container {
-    padding: 25px; /* Espaciado interno */
-    background-color: #1E1E1E; /* Negro con un toque cálido */
-    border-radius: 10px; /* Bordes redondeados elegantes */
-    box-shadow: 0 0 15px rgba(201, 166, 107, 0.2); /* Sombra dorada sutil */
-    margin-top: 25px; /* Margen superior */
-}
+        .container {
+            padding: 25px;
+            background-color: #1E1E1E;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(201, 166, 107, 0.2);
+            margin-top: 25px;
+        }
 
-/* ============================= */
-/* TÍTULOS Y TEXTOS */
-/* ============================= */
+        /* ============================= */
+        /* TÍTULOS Y TEXTOS */
+        /* ============================= */
 
-/* Estilo para los títulos de sección */
-.section-title {
-    font-size: 2.2rem; /* Tamaño llamativo */
-    font-weight: bold; /* Negrita */
-    color: #C9A66B; /* Dorado Suave */
-    text-transform: uppercase;
-    margin-bottom: 20px; /* Espaciado inferior */
-}
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #C9A66B;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
 
-/* ============================= */
-/* TABLAS */
-/* ============================= */
+        /* ============================= */
+        /* TABLAS */
+        /* ============================= */
 
-/* Fondo de la tabla */
-.table {
-    background-color: #202020; /* Gris oscuro */
-    color: #EAEAEA; /* Texto blanco suave */
-    border-radius: 10px; /* Bordes redondeados */
-    overflow: hidden; /* Oculta el contenido que sobresalga */
-}
+        .table {
+            background-color: #202020;
+            color: #EAEAEA;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-/* Encabezados de la tabla */
-.table thead {
-    background-color: #1E3A5F; /* Azul Marino */
-    color: #C9A66B; /* Dorado Suave */
-    font-weight: bold;
-}
+        .table thead {
+            background-color: #1E3A5F;
+            color: #C9A66B;
+            font-weight: bold;
+        }
 
-/* ============================= */
-/* BOTONES */
-/* ============================= */
+        /* ============================= */
+        /* BOTONES */
+        /* ============================= */
 
-/* Botón principal */
-.btn-custom {
-    background-color: #1E3A5F; /* Azul Marino */
-    color: #EAEAEA; /* Blanco suave */
-    border: none; /* Sin borde */
-    font-weight: 600;
-    transition: background 0.3s ease-in-out;
-    padding: 10px 15px;
-    border-radius: 8px;
-}
+        .btn-custom {
+            background-color: #1E3A5F;
+            color: #EAEAEA;
+            border: none;
+            font-weight: 600;
+            transition: background 0.3s ease-in-out;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
 
-/* Cambio de color al pasar el cursor */
-.btn-custom:hover {
-    background-color: #C9A66B; /* Dorado elegante */
-    color: #1E1E1E; /* Negro suave */
-}
+        .btn-custom:hover {
+            background-color: #C9A66B;
+            color: #1E1E1E;
+        }
 
-/* Botón de acción peligrosa (eliminar, etc.) */
-.btn-danger {
-    background-color: #8B0000; /* Rojo Burdeos elegante */
-    color: #EAEAEA; /* Blanco suave */
-    border: none;
-    transition: background 0.3s ease-in-out;
-    padding: 10px 15px;
-    border-radius: 8px;
-}
+        .btn-danger {
+            background-color: #8B0000;
+            color: #EAEAEA;
+            border: none;
+            transition: background 0.3s ease-in-out;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
 
-/* Cambio de color al pasar el cursor */
-.btn-danger:hover {
-    background-color: #C9A66B; /* Dorado suave */
-    color:  
+        .btn-danger:hover {
+            background-color: #C9A66B;
+            color: #1E1E1E;
+        }
     </style>
 </head>
 <body>
@@ -135,6 +124,7 @@ body {
                     <li class="nav-item"><a class="nav-link" href="{{ route('stocks.index') }}">Stock</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('productos.index') }}">Productos</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('clientes.index') }}">Clientes</a></li> <!-- Enlace a Clientes agregado -->
                 </ul>
             </div>
         </div>
