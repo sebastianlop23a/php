@@ -9,14 +9,9 @@ class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'usuarios'; // Nombre correcto de la tabla en la BD
+    protected $table = 'usuarios'; // Nombre de la tabla en la BD
 
     protected $fillable = ['nombre', 'email', 'password', 'rol_id'];
 
-    protected $hidden = ['password']; // Ocultar password al devolver JSON
-
-    public function rol()
-    {
-        return $this->belongsTo(Rol::class, 'rol_id');
-    }
+    protected $hidden = ['password'];
 }
