@@ -11,7 +11,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
-        return response()->json($usuarios);
+        return view('usuarios.index', compact('usuarios'));
     }
 
     // Mostrar un usuario específico
